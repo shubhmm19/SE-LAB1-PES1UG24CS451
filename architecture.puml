@@ -1,0 +1,47 @@
+@startuml
+title Hyperlocal Courier Dispatch & Tracking Engine - Architecture
+skinparam componentStyle rectangle
+
+package "Clients" {
+  [Sender Client App] as SC
+  [Delivery Rider App] as RA
+}
+[API Gateway / Load Balancer\n(TLS, rate limiting)] as GW
+
+package "Microservices" {
+  [Auth Service] as AUTH
+  [Order Service] as ORD
+  [Dispatch & Matching Service] as DSP
+  [Route Optimization Service] as RTE
+  [OTP Service] as OTP
+  [Tracking / Telemetry Service] as TRK
+  [Notification Service] as NTF
+  [Availability Service] as AVL
+}
+queue "Message Broker (Kafka)" as MQ
+database "PostgreSQL" as DB
+database "Redis Geo Cache" as RD
+database "Time-series Store" as TS
+cloud "Maps / Routing API" as MAP
+cloud "SMS / Push Gateway" as SMS
+
+SC --> GW
+RA --> GW
+GW --> AUTH
+GW --> ORD
+GW --> AVL
+GW --> TRK
+GW --> OTP
+ORD --> MQ
+MQ --> DSP
+DSP --> RD
+DSP --> RTE
+RTE --> MAP
+AVL --> RD
+TRK --> TS
+MQ --> NTF
+NTF --> SMS
+OTP --> NTF
+ORD --> DB
+AUTH --> DB
+@enduml
