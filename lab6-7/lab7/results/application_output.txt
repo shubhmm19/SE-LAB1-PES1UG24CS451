@@ -1,0 +1,8 @@
+==== Running parse_booking ====
+Enter a booking code (e.g. AI-203-12A): Airline, Flight and Seat Letter: ('AI', 203, 'A')
+
+==== Running total_weight ====
+Enter bag weights in kg as CSV (e.g. 12.5,7,23): Total Weight: 42.5
+
+==== Running tag_label ====
+Enter a passenger name (first and last): Tag Label: A. LOVELACE

@@ -1,0 +1,251 @@
+FFF....FFF.F...FFFFFFF                                                   [100%]
+=================================== FAILURES ===================================
+_______________________ test_parse_booking_never_crashes _______________________
+
+    @given(st.one_of(st.text(), st.none()))
+>   def test_parse_booking_never_crashes(s):
+                   ^^^
+
+results/baseline/test_airline_baggage.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+results/baseline/test_airline_baggage.py:13: in test_parse_booking_never_crashes
+    result = parse_booking(s)
+             ^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+code = None
+
+    def parse_booking(code):
+>       airline, flight, seat = code.split('-')
+                                ^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'split'
+E       Failing test case: test_parse_booking_never_crashes(
+E           s=None,
+E       )
+
+results/baseline/airline_baggage.py:5: AttributeError
+_______________________ test_total_weight_never_crashes ________________________
+
+    @given(st.one_of(st.text(), st.none()))
+>   def test_total_weight_never_crashes(s):
+                   ^^^
+
+results/baseline/test_airline_baggage.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+results/baseline/test_airline_baggage.py:26: in test_total_weight_never_crashes
+    result = total_weight(s)
+             ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+weights_csv = None
+
+    def total_weight(weights_csv):
+>       return sum(float(w) for w in weights_csv.split(','))
+                                     ^^^^^^^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'split'
+E       Failing test case: test_total_weight_never_crashes(
+E           s=None,
+E       )
+
+results/baseline/airline_baggage.py:10: AttributeError
+_________________________ test_tag_label_never_crashes _________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/test_airline_baggage.py", line 33, in test_tag_label_never_crashes
+  |     def test_tag_label_never_crashes(s):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/test_airline_baggage.py", line 35, in test_tag_label_never_crashes
+    |     result = tag_label(s)
+    |   File "/Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/airline_baggage.py", line 15, in tag_label
+    |     return parts[0][0].upper() + '. ' + parts[1].upper()
+    |            ~~~~~^^^
+    | IndexError: list index out of range
+    | Failing test case: test_tag_label_never_crashes(
+    |     s='',
+    | )
+    | Explanation:
+    |     These lines were always and only run by failing test cases:
+    |         /Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/test_airline_baggage.py:36
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/test_airline_baggage.py", line 35, in test_tag_label_never_crashes
+    |     result = tag_label(s)
+    |   File "/Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/airline_baggage.py", line 14, in tag_label
+    |     parts = name.split()
+    |             ^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | Failing test case: test_tag_label_never_crashes(
+    |     s=None,
+    | )
+    | Explanation:
+    |     These lines were always and only run by failing test cases:
+    |         /Users/shubhmm19/Desktop/SE-LABS-PES1UG24CS451/SE-LAB1-PES1UG24CS451/lab6-7/lab7/results/baseline/test_airline_baggage.py:36
+    +------------------------------------
+__________________ test_invalid_booking_is_rejected[AI-0-12A] __________________
+
+value = 'AI-0-12A'
+
+    @pytest.mark.parametrize("value", ["", "AI-0-12A", "AI-12-A", "A-12-1A", "AI-x-12A", "AI-12-12AA"])
+    def test_invalid_booking_is_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:61: Failed
+__________________ test_invalid_booking_is_rejected[AI-12-A] ___________________
+
+value = 'AI-12-A'
+
+    @pytest.mark.parametrize("value", ["", "AI-0-12A", "AI-12-A", "A-12-1A", "AI-x-12A", "AI-12-12AA"])
+    def test_invalid_booking_is_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:61: Failed
+__________________ test_invalid_booking_is_rejected[A-12-1A] ___________________
+
+value = 'A-12-1A'
+
+    @pytest.mark.parametrize("value", ["", "AI-0-12A", "AI-12-A", "A-12-1A", "AI-x-12A", "AI-12-12AA"])
+    def test_invalid_booking_is_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:61: Failed
+_________________ test_invalid_booking_is_rejected[AI-12-12AA] _________________
+
+value = 'AI-12-12AA'
+
+    @pytest.mark.parametrize("value", ["", "AI-0-12A", "AI-12-A", "A-12-1A", "AI-x-12A", "AI-12-12AA"])
+    def test_invalid_booking_is_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:61: Failed
+____________________ test_invalid_weights_are_rejected[-1] _____________________
+
+value = '-1'
+
+    @pytest.mark.parametrize("value", ["", "1,,2", "one,2", "-1", "nan", "inf"])
+    def test_invalid_weights_are_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:67: Failed
+____________________ test_invalid_weights_are_rejected[nan] ____________________
+
+value = 'nan'
+
+    @pytest.mark.parametrize("value", ["", "1,,2", "one,2", "-1", "nan", "inf"])
+    def test_invalid_weights_are_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:67: Failed
+____________________ test_invalid_weights_are_rejected[inf] ____________________
+
+value = 'inf'
+
+    @pytest.mark.parametrize("value", ["", "1,,2", "one,2", "-1", "nan", "inf"])
+    def test_invalid_weights_are_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:67: Failed
+______________________ test_invalid_names_are_rejected[] _______________________
+
+value = ''
+
+    @pytest.mark.parametrize("value", ["", "Madonna", "John 123", "123 Smith"])
+    def test_invalid_names_are_rejected(value):
+        with pytest.raises(ValueError):
+>           tag_label(value)
+
+results/baseline/test_airline_baggage.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = ''
+
+    def tag_label(name):
+        parts = name.split()
+>       return parts[0][0].upper() + '. ' + parts[1].upper()
+               ^^^^^^^^
+E       IndexError: list index out of range
+
+results/baseline/airline_baggage.py:15: IndexError
+___________________ test_invalid_names_are_rejected[Madonna] ___________________
+
+value = 'Madonna'
+
+    @pytest.mark.parametrize("value", ["", "Madonna", "John 123", "123 Smith"])
+    def test_invalid_names_are_rejected(value):
+        with pytest.raises(ValueError):
+>           tag_label(value)
+
+results/baseline/test_airline_baggage.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'Madonna'
+
+    def tag_label(name):
+        parts = name.split()
+>       return parts[0][0].upper() + '. ' + parts[1].upper()
+                                            ^^^^^^^^
+E       IndexError: list index out of range
+
+results/baseline/airline_baggage.py:15: IndexError
+__________________ test_invalid_names_are_rejected[John 123] ___________________
+
+value = 'John 123'
+
+    @pytest.mark.parametrize("value", ["", "Madonna", "John 123", "123 Smith"])
+    def test_invalid_names_are_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:73: Failed
+__________________ test_invalid_names_are_rejected[123 Smith] __________________
+
+value = '123 Smith'
+
+    @pytest.mark.parametrize("value", ["", "Madonna", "John 123", "123 Smith"])
+    def test_invalid_names_are_rejected(value):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+results/baseline/test_airline_baggage.py:73: Failed
+=============================== warnings summary ===============================
+../../../../../../../Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/pytest_plugin.py:14
+  /Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED results/baseline/test_airline_baggage.py::test_parse_booking_never_crashes
+FAILED results/baseline/test_airline_baggage.py::test_total_weight_never_crashes
+FAILED results/baseline/test_airline_baggage.py::test_tag_label_never_crashes
+FAILED results/baseline/test_airline_baggage.py::test_invalid_booking_is_rejected[AI-0-12A]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_booking_is_rejected[AI-12-A]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_booking_is_rejected[A-12-1A]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_booking_is_rejected[AI-12-12AA]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_weights_are_rejected[-1]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_weights_are_rejected[nan]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_weights_are_rejected[inf]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_names_are_rejected[]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_names_are_rejected[Madonna]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_names_are_rejected[John 123]
+FAILED results/baseline/test_airline_baggage.py::test_invalid_names_are_rejected[123 Smith]
+14 failed, 8 passed, 1 warning in 1.49s
